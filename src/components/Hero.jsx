@@ -1,128 +1,40 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import http from "../utils/axios";
 function Hero() {
-  useEffect(()=>{
-    
-  }, [])
+  const [trending, setTrending] = useState([]);
+  useEffect(() => {
+    http
+      .get("/image", {
+        headers: {
+          "x-api-key": "W3HQA07-RERMRQW-G7EJT3Q-2ZW7HG4",
+        },
+      })
+      .then((data) => {
+        // console.log(data);
+        setTrending(data.data.docs);
+        console.log(trending);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
-    <div className="flex flex-col gap-6">
+    <div className="container flex flex-col gap-6">
       <h2 className="mt-[34px] ml-9 w-[122px] h-10 font-normal text-3xl ">
         Trending
       </h2>
 
-      <div className="carousel rounded-box container flex gap-4 ml-9 max-w-[1280px]">
-        <div className="carousel-item">
-          <div className="wrappers w-[420px] h-[200px] relative bg-gray-800 rounded-xl overflow-hidden">
-            <img
-              src="https://picsum.photos/700/300"
-              className="w-full h-full object-cover opacity-70"
-              alt="Movie"
-            />
-            <div className="absolute top-2 right-2 bg-gray-700 p-2 rounded-full">
-              <i className="fa-regular fa-bookmark text-white"></i>
+      <div className="carousel rounded-box">
+        {trending.length &&
+          trending.map((film, ind) => (
+            <div key={ind} className="carousel-item border border-white me-3 w-1/3 rounded-lg">
+              <img
+                src={film.url}
+                className="w-full rounded-lg"
+                alt=""
+              />
             </div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm">2019 • Movie • PG</p>
-              <h3 className="text-lg font-bold">Beyond Earth</h3>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="wrappers w-[420px] h-[200px] relative bg-gray-800 rounded-xl overflow-hidden">
-            <img
-              src="https://picsum.photos/700/300"
-              className="w-full h-full object-cover opacity-70"
-              alt="Movie"
-            />
-            <div className="absolute top-2 right-2 bg-gray-700 p-2 rounded-full">
-              <i className="fa-regular fa-bookmark text-white"></i>
-            </div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm">2019 • Movie • PG</p>
-              <h3 className="text-lg font-bold">Beyond Earth</h3>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="wrappers w-[420px] h-[200px] relative bg-gray-800 rounded-xl overflow-hidden">
-            <img
-              src="https://picsum.photos/700/300"
-              className="w-full h-full object-cover opacity-70"
-              alt="Movie"
-            />
-            <div className="absolute top-2 right-2 bg-gray-700 p-2 rounded-full">
-              <i className="fa-regular fa-bookmark text-white"></i>
-            </div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm">2019 • Movie • PG</p>
-              <h3 className="text-lg font-bold">Beyond Earth</h3>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="wrappers w-[420px] h-[200px] relative bg-gray-800 rounded-xl overflow-hidden">
-            <img
-              src="https://picsum.photos/700/300"
-              className="w-full h-full object-cover opacity-70"
-              alt="Movie"
-            />
-            <div className="absolute top-2 right-2 bg-gray-700 p-2 rounded-full">
-              <i className="fa-regular fa-bookmark text-white"></i>
-            </div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm">2019 • Movie • PG</p>
-              <h3 className="text-lg font-bold">Beyond Earth</h3>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="wrappers w-[420px] h-[200px] relative bg-gray-800 rounded-xl overflow-hidden">
-            <img
-              src="https://picsum.photos/700/300"
-              className="w-full h-full object-cover opacity-70"
-              alt="Movie"
-            />
-            <div className="absolute top-2 right-2 bg-gray-700 p-2 rounded-full">
-              <i className="fa-regular fa-bookmark text-white"></i>
-            </div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm">2019 • Movie • PG</p>
-              <h3 className="text-lg font-bold">Beyond Earth</h3>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="wrappers w-[420px] h-[200px] relative bg-gray-800 rounded-xl overflow-hidden">
-            <img
-              src="https://picsum.photos/700/300"
-              className="w-full h-full object-cover opacity-70"
-              alt="Movie"
-            />
-            <div className="absolute top-2 right-2 bg-gray-700 p-2 rounded-full">
-              <i className="fa-regular fa-bookmark text-white"></i>
-            </div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm">2019 • Movie • PG</p>
-              <h3 className="text-lg font-bold">Beyond Earth</h3>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="wrappers w-[420px] h-[200px] relative bg-gray-800 rounded-xl overflow-hidden">
-            <img
-              src="https://picsum.photos/700/300"
-              className="w-full h-full object-cover opacity-70"
-              alt="Movie"
-            />
-            <div className="absolute top-2 right-2 bg-gray-700 p-2 rounded-full">
-              <i className="fa-regular fa-bookmark text-white"></i>
-            </div>
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm">2019 • Movie • PG</p>
-              <h3 className="text-lg font-bold">Beyond Earth</h3>
-            </div>
-          </div>
-        </div>
+          ))}
       </div>
     </div>
   );
