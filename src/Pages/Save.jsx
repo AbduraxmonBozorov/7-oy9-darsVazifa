@@ -12,11 +12,14 @@ const Save = () => {
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
+    
     if (filmsId.length > 0) {
       Promise.all(
         filmsId.map((id) => http.get(`/movie/${id}`).then((resp) => resp.data))
       )
         .then((movies) => {
+          console.log(movies);
+          
           setFilms(movies);
         })
         .catch((error) => {
@@ -37,10 +40,11 @@ const Save = () => {
             films.map((film, ind) => (
               <div key={ind}>
                 <img
-                  src={film.image}
-                  className="w-96 h-64"
+                  src={film.poster.url}
+                  className="w-full h-64"
                   alt={film.title || "Movie"}
                 />
+                <p>{film.name}</p>
               </div>
             ))}
         </div>
